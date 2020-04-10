@@ -83,8 +83,6 @@ Determines the state of the camera flash. Has the following possible states.
 |   ---- | --------      | 
 | object | `{ off: 1 }`  | 
 
----
-
 ## Methods
 
 ## takePictureAsync()
