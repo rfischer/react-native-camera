@@ -27,6 +27,8 @@ RCT_EXPORT_VIEW_PROPERTY(onRecordingEnd, RCTDirectEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onTextRecognized, RCTDirectEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onSubjectAreaChanged, RCTDirectEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(videoStabilizationMode, NSInteger);
+RCT_EXPORT_VIEW_PROPERTY(onTouch, RCTDirectEventBlock);
+
 
 + (BOOL)requiresMainQueueSetup
 {
@@ -90,7 +92,7 @@ RCT_EXPORT_VIEW_PROPERTY(videoStabilizationMode, NSInteger);
 
 - (NSArray<NSString *> *)supportedEvents
 {
-    return @[@"onCameraReady", @"onAudioInterrupted", @"onAudioConnected", @"onMountError", @"onBarCodeRead", @"onFacesDetected", @"onPictureTaken", @"onPictureSaved", @"onRecordingStart", @"onRecordingEnd", @"onTextRecognized", @"onGoogleVisionBarcodesDetected", @"onSubjectAreaChanged"];
+    return @[@"onCameraReady", @"onAudioInterrupted", @"onAudioConnected", @"onMountError", @"onBarCodeRead", @"onFacesDetected", @"onPictureTaken", @"onPictureSaved", @"onRecordingStart", @"onRecordingEnd", @"onTextRecognized", @"onGoogleVisionBarcodesDetected", @"onSubjectAreaChanged",@"onTouch"];
 }
 
 + (NSDictionary *)validCodecTypes
@@ -218,6 +220,12 @@ RCT_CUSTOM_VIEW_PROPERTY(focusDepth, NSNumber, RNCamera)
 {
     [view setFocusDepth:[RCTConvert float:json]];
     [view updateFocusDepth];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(useNativeZoom, BOOL, RNCamera)
+{
+    view.useNativeZoom=[RCTConvert BOOL:json];
+    [view setupOrDisablePinchZoom];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(zoom, NSNumber, RNCamera)
