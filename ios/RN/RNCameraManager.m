@@ -86,8 +86,13 @@ RCT_EXPORT_VIEW_PROPERTY(onTouch, RCTDirectEventBlock);
              @"VideoStabilization": [[self class] validVideoStabilizationModes],
              @"GoogleVisionBarcodeDetection": @{
                  @"BarcodeType": [[self class] barcodeDetectorConstants],
-             }
-             };
+                 @"BarcodeMode": @{
+                     @"NORMAL" : @(RNCameraGoogleVisionBarcodeModeNormal),
+                     @"ALTERNATE" : @(RNCameraGoogleVisionBarcodeModeAlternate),
+                     @"INVERTED" : @(RNCameraGoogleVisionBarcodeModeInverted),
+                     },
+             },
+    };
 }
 
 - (NSArray<NSString *> *)supportedEvents
@@ -312,6 +317,11 @@ RCT_CUSTOM_VIEW_PROPERTY(barCodeTypes, NSArray, RNCamera)
 RCT_CUSTOM_VIEW_PROPERTY(googleVisionBarcodeType, NSString, RNCamera)
 {
     [view updateGoogleVisionBarcodeType:json];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(googleVisionBarcodeMode, NSInteger, RNCamera)
+{
+    [view updateGoogleVisionBarcodeMode:json];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(googleVisionBarcodeDetectorEnabled, BOOL, RNCamera)
