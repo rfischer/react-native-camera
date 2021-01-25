@@ -283,6 +283,7 @@ type PropsType = typeof View.props & {
   keepAudioSession?: boolean,
   useCamera2Api?: boolean,
   playSoundOnCapture?: boolean,
+  playSoundOnRecord?: boolean,
   videoStabilizationMode?: number | string,
   pictureSize?: string,
   rectOfInterest: Rect,
@@ -443,6 +444,7 @@ export default class Camera extends React.Component<PropsType, StateType> {
     keepAudioSession: PropTypes.bool,
     useCamera2Api: PropTypes.bool,
     playSoundOnCapture: PropTypes.bool,
+    playSoundOnRecord: PropTypes.bool,
     videoStabilizationMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     pictureSize: PropTypes.string,
     mirrorVideo: PropTypes.bool,
@@ -488,6 +490,7 @@ export default class Camera extends React.Component<PropsType, StateType> {
     keepAudioSession: false,
     useCamera2Api: false,
     playSoundOnCapture: false,
+    playSoundOnRecord: false,
     pictureSize: 'None',
     videoStabilizationMode: 0,
     mirrorVideo: false,
@@ -667,7 +670,7 @@ export default class Camera extends React.Component<PropsType, StateType> {
       this.props.onTap(nativeEvent.touchOrigin);
     }
     if (this.props.onDoubleTap && nativeEvent.isDoubleTap) {
-      this.props.onTap(nativeEvent.touchOrigin);
+      this.props.onDoubleTap(nativeEvent.touchOrigin);
     }
   };
   _onAudioConnected = () => {
